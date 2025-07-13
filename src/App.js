@@ -41,8 +41,13 @@ useEffect(() => {
               <tr key={index}>
                 <td>{row.Movie}</td>
                 <td>{row.Player}</td>
-                <td>{row.ReleaseDate}</td>
-                <td>{row.DomesticGross}</td>
+                <td>{new Date(row["Release Date"]).toLocaleDateString()}</td>
+                <td>
+  {parseInt(row["Domestic Gross"].replace(/[$,]/g, ""))?.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD"
+  })}
+</td>
               </tr>
             ))}
           </tbody>
