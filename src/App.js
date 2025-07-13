@@ -9,10 +9,15 @@ function App() {
   // Fetch CSV data on component mount
 useEffect(() => {
   fetch("http://localhost:4000/api/movies")
-    .then((res) => res.text())
+    .then((res) => {
+      console.log("Fetched CSV status:", res.status);
+      return res.text();
+    })
     .then((csvText) => {
+      console.log("CSV Text Preview:\n", csvText.slice(0, 500));
       const parsed = Papa.parse(csvText, { header: true });
-      console.log("First row keys:", Object.keys(parsed.data[0]));
+      console.log("Parsed Data Example:", parsed.data[0]);
+      console.log("Parsed Keys:", Object.keys(parsed.data[0] || {}));
       setMovies(parsed.data);
     })
     .catch((error) => {
