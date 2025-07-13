@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import MovieTable from "./components/MovieTable";
+import Scoreboard from "./components/Scoreboard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container" style={{ padding: "1rem 2rem" }}>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>2025 Summer Movie Draft</h1>
+      <p style={{ marginBottom: "2rem", color: "#555" }}>Box office tracker for Jonathan and friends</p>
+      <MovieTable />
+      <Scoreboard />
     </div>
   );
 }
