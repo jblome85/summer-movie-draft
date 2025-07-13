@@ -45,20 +45,22 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {movies.map((row, index) => (
-              <tr key={index}>
-                <td>{row["Movie"]}</td>
-                <td>{row["Player"]}</td>
-                <td>{new Date(row["Release Date"]).toLocaleDateString()}</td>
-                <td>
-                  {parseInt(row["Domestic Gross"]?.replace(/[$,]/g, ""))?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD"
-                  })}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {movies.map((row, index) => (
+    <tr key={index}>
+      <td>{row["Movie"]}</td>
+      <td>{row["Player"]}</td>
+      <td>{new Date(row["Release Date"]).toLocaleDateString()}</td>
+      <td>
+  {Number(row["Domestic Gross"])
+    ? Number(row["Domestic Gross"]).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      })
+    : ""}
+</td>
+    </tr>
+  ))}
+</tbody>
         </table>
       )}
     </div>
