@@ -11,10 +11,9 @@ useEffect(() => {
   fetch("http://localhost:4000/api/movies")
     .then((res) => res.text())
     .then((csvText) => {
-      console.log("RAW CSV TEXT:", csvText); // 👈 Add this line
       const parsed = Papa.parse(csvText, { header: true });
-      console.log("PARSED DATA:", parsed.data); // 👈 And this one too
-      setMovies(parsed.data.filter(row => row.Movie && row.Player));
+      console.log("First row keys:", Object.keys(parsed.data[0]));
+      setMovies(parsed.data);
     })
     .catch((error) => {
       console.error("Failed to fetch movie data:", error);
