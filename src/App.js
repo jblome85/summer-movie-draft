@@ -7,19 +7,19 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   // Fetch CSV data on component mount
-  useEffect(() => {
-    fetch("http://localhost:4000/api/movies")
-      .then((res) => res.text())
-      .then((csvText) => {
-        const parsed = Papa.parse(csvText, { header: true });
-        setMovies(parsed.data.filter(row => row.Movie && row.Player)); // Filter blank rows
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch movie data:", error);
-        setLoading(false);
-      });
-  }, []);
+useEffect(() => {
+  fetch("http://localhost:4000/api/movies")
+    .then((res) => res.text())
+    .then((csvText) => {
+      console.log("RAW CSV TEXT:", csvText); // 👈 Add this line
+      const parsed = Papa.parse(csvText, { header: true });
+      console.log("PARSED DATA:", parsed.data); // 👈 And this one too
+      setMovies(parsed.data.filter(row => row.Movie && row.Player));
+    })
+    .catch((error) => {
+      console.error("Failed to fetch movie data:", error);
+    });
+}, []);
 
   return (
     <div className="App">
